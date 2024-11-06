@@ -1,0 +1,185 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vertical Product Slider</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
+  <style>
+    .swiper {
+      width: 100%;
+      height: 80vh;
+    }
+
+    .swiper-slide {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .swiper-slide img {
+      max-width: 100%;
+      max-height: 80%;
+    }
+
+    .product-info {
+      margin-top: 10px;
+    }
+
+    .product-info p {
+      margin: 0;
+    }
+
+    #cart {
+      margin-top: 20px;
+      border: 1px solid #ccc;
+      padding: 10px;
+      max-width: 400px;
+    }
+
+    button {
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .remove-btn {
+      background-color: red;
+    }
+
+    .remove-btn:hover {
+      background-color: darkred;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="swiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        <img src="images/b8.jpeg" alt="Slide 1">
+        <div class="product-info">
+          <p>Price: $1570.00</p>
+          <button onclick="addToCart('Product 1', 1570)">Add to Cart</button>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <img src="images/b4.jpeg" alt="Slide 2">
+        <div class="product-info">
+          <p>Price: $570.00</p>
+          <button onclick="addToCart('Product 2', 570)">Add to Cart</button>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <img src="images/c2.jpeg" alt="Slide 3">
+        <div class="product-info">
+          <p>Price: $985.00</p>
+          <button onclick="addToCart('Product 3', 985)">Add to Cart</button>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <img src="images/b8.jpeg" alt="Slide 4">
+        <div class="product-info">
+          <p>Price: $1120.00</p>
+          <button onclick="addToCart('Product 4', 1120)">Add to Cart</button>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <img src="images/b6.jpeg" alt="Slide 5">
+        <div class="product-info">
+          <p>Price: $890.00</p>
+          <button onclick="addToCart('Product 5', 890)">Add to Cart</button>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <img src="images/b4.jpeg" alt="Slide 6">
+        <div class="product-info">
+          <p>Price: $739.00</p>
+          <button onclick="addToCart('Product 6', 739)">Add to Cart</button>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <img src="images/b5.jpeg" alt="Slide 7">
+        <div class="product-info">
+          <p>Price: $570.00</p>
+          <button onclick="addToCart('Product 7', 570)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+    <div class="swiper-pagination"></div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+  </div>
+
+  <div id="cart">
+    <h3>Your Cart</h3>
+    <ul id="cart-items"></ul>
+    <p id="total-price">Total: $0.00</p>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+  <script>
+    const cartItems = [];
+    let totalPrice = 0;
+
+    function addToCart(productName, price) {
+      cartItems.push({ productName, price });
+      totalPrice += price;
+      displayCart();
+    }
+
+    function removeFromCart(index) {
+      totalPrice -= cartItems[index].price;
+      cartItems.splice(index, 1);
+      displayCart();
+    }
+
+    function displayCart() {
+      const cartItemsList = document.getElementById('cart-items');
+      cartItemsList.innerHTML = '';
+      cartItems.forEach((item, index) => {
+        const listItem = document.createElement('li');
+        listItem.textContent = `${item.productName} - $${item.price.toFixed(2)}`;
+        
+        const removeButton = document.createElement('button');
+        removeButton.textContent = 'Remove';
+        removeButton.className = 'remove-btn';
+        removeButton.onclick = () => removeFromCart(index);
+        
+        listItem.appendChild(removeButton);
+        cartItemsList.appendChild(listItem);
+      });
+      document.getElementById('total-price').textContent = `Total: $${totalPrice.toFixed(2)}`;
+    }
+
+    const swiper = new Swiper('.swiper', {
+      direction: 'vertical',
+      slidesPerView: 1,
+      spaceBetween: 10,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      loop: true,
+    });
+  </script>
+</body>
+
+</html>
+
+

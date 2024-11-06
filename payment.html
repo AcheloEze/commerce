@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Payment Options</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Select Payment Method</h1>
+        <div class="payment-options">
+            <div class="payment-option" id="credit-card">
+                <h2>Credit/Debit Card</h2>
+                <input type="text" placeholder="Card Number" required>
+                <input type="text" placeholder="Expiry Date (MM/YY)" required>
+                <input type="text" placeholder="CVV" required>
+                <button onclick="processPayment('Credit/Debit Card')">Pay Now</button>
+            </div>
+            <div class="payment-option" id="paypal">
+                <h2>PayPal</h2>
+                <button onclick="processPayment('PayPal')">Pay with PayPal</button>
+            </div>
+            <div class="payment-option" id="bank-transfer">
+                <h2>Bank Transfer</h2>
+                <input type="text" placeholder="Account Number" required>
+                <button onclick="processPayment('Bank Transfer')">Transfer Now</button>
+            </div>
+        </div>
+    </div>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 50%;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.payment-options {
+    display: flex;
+    flex-direction: column;
+}
+
+.payment-option {
+    background-color: #e9ecef;
+    margin: 10px 0;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.payment-option h2 {
+    margin-top: 0;
+}
+
+input[type="text"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+</style>
+<script>
+function processPayment(method) {
+    let message = '';
+
+    switch (method) {
+        case 'Credit/Debit Card':
+            message = 'Processing Credit/Debit Card payment...';
+            break;
+        case 'PayPal':
+            message = 'Redirecting to PayPal...';
+            break;
+        case 'Bank Transfer':
+            message = 'Processing Bank Transfer...';
+            break;
+        default:
+            message = 'Unknown payment method.';
+    }
+
+    alert(message); // Replace this with actual payment processing logic
+}
+</script>
+    <script src="script.js"></script>
+</body>
+</html>

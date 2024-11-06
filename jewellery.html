@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>E-commerce Carousel</title>
+</head>
+<body>
+    <div class="carousel">
+        <div class="carousel-container">
+            <div class="carousel-item" data-name="Item 1" data-price="10">
+                <img src="images/c4.jpeg" alt="Item 1">
+                <h3>ashy earrings</h3>
+                <p>$10</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="carousel-item" data-name="Item 2" data-price="20">
+                <img src="images/e1.jpeg" alt="Item 2">
+                <h3>danielle-de-angeli</h3>
+                <p>$20</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="carousel-item" data-name="Item 2" data-price="20">
+                <img src="images/b1.jpeg" alt="Item 2">
+                <h3>dima-valkov</h3>
+                <p>$20</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div> 
+            <div class="carousel-item" data-name="Item 2" data-price="20">
+                <img src="images/c5.jpeg" alt="Item 2">
+                <h3>godisable</h3>
+                <p>$20</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>  
+            <div class="carousel-item" data-name="Item 2" data-price="20">
+                <img src="images/b3.jpeg" alt="Item 2">
+                <h3>godisable-jaco</h3>
+                <p>$20</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>  
+            <div class="carousel-item" data-name="Item 2" data-price="20">
+                <img src="images/b2.jpeg" alt="Item 2">
+                <h3>martabranco</h3>
+                <p>$20</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="carousel-item" data-name="Item 3" data-price="30">
+                <img src="images/c4.jpeg" alt="Item 3">
+                <h3>pixabay</h3>
+                <p>$30</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+        </div>
+        <button class="carousel-button prev">❮</button>
+        <button class="carousel-button next">❯</button>
+    </div>
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAfRJREFUaEPtmEFSwzAMRdUNO1ZwH+A+cAFYAAu4ANwHuA+s2LGBqGMzqetY399K68ykM920lvOfviQn2cjCP5uF65cV4NgOrg706MBvRtS7iOj38diC0+vnSigHEOMeeoOoBVCQSxH56MUJBkBL6apngFTbRaj/8e/duICO0bdQOhGiGxdQgJwLaOys1VYjInWhi4lUA5BzYdbsJptrwrR0dyZgDYDuVzojDgGz13u1AGkZHUL0+BrNAD2U0c7tTK0Dmg3WhfRaTDnunT8MAOtCK0D27GEA2GZuBciObRaAKaNWgKxWFoApoxaAyUOTBWCauTsAy4WaW437ISO6fuozmegWBxAXEAhLfHGPVgDLBYUsCbDEm0+ArQDoSM1BIOLN5w4PAHSkjiEQ8ZZ7237xAEDKaPxWIwpDbgRNfeYC5CoN90el7ZEB4OKAiqhxAcxJsfn/9/ByAG1mVDxc3p4AXi7o5NHygV6eeQLUZNdtrTfAqYicBHU/IvINKmXj3JpYdZ4ND/0632+C6NdQCl8GBBvndg7oRprBZxG5TsS+iMhdwQk2zn0KaRY/JzJ9Prgy5QIbtwKkydZSeBrVf/xf++DWKCEmzt2B2MQ6v2Mf1DQxE+faxDEj7Dhk41zHKDjyfZd5H2S+6oDdVgAgSbMuWbwDf/LIbzH3GN+wAAAAAElFTkSuQmCC"/>
+    
+    <ul id="shopping-cart"></ul>
+    
+    <style>
+      body {
+    font-family: Arial, sans-serif;
+}
+
+.carousel {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.carousel-container {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.carousel-item {
+    min-width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    padding: 10px;
+}
+
+.carousel-item img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.7);
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    font-size: 18px;
+}
+
+.prev {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.remove-item {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.remove-item:hover {
+    background-color: #c82333;
+}
+
+    </style>
+    
+    <script>
+      const addToCartButtons = document.querySelectorAll('.add-to-cart');
+const shoppingCart = document.getElementById('shopping-cart');
+
+let currentIndex = 0;
+
+function updateCarousel() {
+    const items = document.querySelectorAll('.carousel-item');
+    const totalItems = items.length;
+    const offset = -currentIndex * 100;
+    document.querySelector('.carousel-container').style.transform = `translateX(${offset}%)`;
+}
+
+document.querySelector('.next').addEventListener('click', () => {
+    const items = document.querySelectorAll('.carousel-item');
+    currentIndex = (currentIndex + 1) % items.length;
+    updateCarousel();
+});
+
+document.querySelector('.prev').addEventListener('click', () => {
+    const items = document.querySelectorAll('.carousel-item');
+    currentIndex = (currentIndex - 1 + items.length) % items.length;
+    updateCarousel();
+});
+
+addToCartButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        const item = button.parentElement;
+        const itemName = item.getAttribute('data-name');
+        const itemPrice = item.getAttribute('data-price');
+
+        // Create a new list item
+        const listItem = document.createElement('li');
+        listItem.textContent = `${itemName} - $${itemPrice}`;
+        
+        // Create remove button
+        const removeButton = document.createElement('button');
+        removeButton.textContent = 'Remove';
+        removeButton.classList.add('remove-item');
+        
+        // Add event listener to remove button
+        removeButton.addEventListener('click', () => {
+            shoppingCart.removeChild(listItem);
+        });
+        
+        listItem.appendChild(removeButton);
+        shoppingCart.appendChild(listItem);
+    });
+});
+
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

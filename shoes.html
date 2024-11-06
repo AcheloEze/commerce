@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Product Slider</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .swiper {
+      width: 100%;
+      height: 80vh;
+    }
+
+    .swiper-slide {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .swiper-slide img {
+      max-width: 100%;
+      max-height: 80%;
+    }
+
+    .product-info {
+      margin-top: 10px;
+    }
+
+    .product-info p {
+      margin: 0;
+    }
+
+    #cart {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-top: 20px;
+    }
+
+    #cart ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    #cart li {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 5px;
+    }
+
+    #cart button {
+      background: red;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    .total {
+      font-weight: bold;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="swiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        <img src="images/a2.jpeg" alt="Slide 1">
+        <div class="product-info">
+          <p>Price: $1570.00</p>
+          <button data-price="1570.00">Add to Cart</button>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <img src="images/a1.jpeg" alt="Slide 2">
+        <div class="product-info">
+          <p>Price: $570.00</p>
+          <button data-price="570.00">Add to Cart</button>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <img src="images/a5.jpeg" alt="Slide 3">
+        <div class="product-info">
+          <p>Price: $985.00</p>
+          <button data-price="985.00">Add to Cart</button>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <img src="images/c8.jpeg b" alt="Slide 4">
+        <div class="product-info">
+          <p>Price: $1120.00</p>
+          <button data-price="1120.00">Add to Cart</button>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <img src="images/c7.jpeg" alt="Slide 5">
+        <div class="product-info">
+          <p>Price: $890.00</p>
+          <button data-price="890.00">Add to Cart</button>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <img src="images/a3.jpeg" alt="Slide 6">
+        <div class="product-info">
+          <p>Price: $739.00</p>
+          <button data-price="739.00">Add to Cart</button>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <img src="images/a4.jpeg" alt="Slide 7">
+        <div class="product-info">
+          <p>Price: $570.00</p>
+          <button data-price="570.00">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+    <div class="swiper-pagination"></div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+  </div>
+
+  <div id="cart">
+    <h2>Cart</h2>
+    <ul id="cart-list"></ul>
+    <p class="total">Total: $<span id="total-price">0.00</span></p>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+  <script>
+    const swiper = new Swiper('.swiper', {
+      slidesPerView: 1,
+      spaceBetween: 10,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      loop: true,
+    });
+
+    const cartList = document.getElementById('cart-list');
+    const totalPriceElem = document.getElementById('total-price');
+    let totalPrice = 0;
+
+    document.querySelectorAll('.product-info button').forEach(button => {
+      button.addEventListener('click', () => {
+        const price = parseFloat(button.getAttribute('data-price'));
+        const itemName = button.parentElement.querySelector('p').innerText;
+
+        // Add item to cart
+        const listItem = document.createElement('li');
+        listItem.innerHTML = `${itemName} <button class="remove">Remove</button>`;
+        cartList.appendChild(listItem);
+
+        // Update total price
+        totalPrice += price;
+        totalPriceElem.innerText = totalPrice.toFixed(2);
+
+        // Add remove functionality
+        listItem.querySelector('.remove').addEventListener('click', () => {
+          cartList.removeChild(listItem);
+          totalPrice -= price;
+          totalPriceElem.innerText = totalPrice.toFixed(2);
+        });
+      });
+    });
+  </script>
+</body>
+
+</html>
+

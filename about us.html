@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>About Us - Fashion E-commerce</title>
+</head>
+<body>
+  <div class="about-us-container">
+    <div class="background-image"></div>
+    <div class="about-us-content">
+        <h1>About Us</h1>
+        <p>At<b> ChelDen Fashions</b>, we are more than just a fashion retailer; we are a community of style enthusiasts. Founded in <b>2024</b>, our mission is to empower individuals through fashion that speaks to their unique identity.</p>
+        <p>Our curated collections feature a blend of contemporary trends and timeless classics, ensuring there’s something for everyone. We source high-quality materials and prioritize ethical manufacturing practices, so you can feel good about your choices.</p>
+        <p>Join us as we celebrate diversity, creativity, and self-expression. Whether you're looking for the perfect outfit for a special occasion or everyday essentials, we’ve got you covered.</p>
+     
+
+    </div>
+</div>
+<style>
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    color: #fff;
+}
+
+.about-us-container {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.background-image {
+    background-image: url('/img/1.jpg'); /* Replace with your image URL */
+    background-size: cover;
+    background-position: center;
+    height: 80%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    filter: brightness(1.0);
+}
+
+.about-us-content {
+    position: relative;
+    z-index: 2;
+    padding: 40px;
+    max-width: 800px;
+    margin: auto;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    font-size: 2em;
+}
+
+h1 {
+    font-size: 3.5em;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+p {
+    font-size: 1.2em;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.learn-more-button {
+    background-color: #ff6347; /* Tomato color */
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.2em;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.learn-more-button:hover {
+    background-color: #ff4500; /* Darker tomato */
+    transform: scale(1.05);
+}
+</style>
+
+<script>
+document.querySelector('.learn-more-button').addEventListener('click', function() {
+    window.location.href = 'your-collection-page-url'; // Replace with your actual collection URL
+});
+</script>
+    
+    <script src="script.js"></script>
+</body>
+</html>
